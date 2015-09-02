@@ -1,0 +1,102 @@
+﻿<Window x:Name="MainWindow1" x:Class="CharacterRecognition.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Foreground="Black" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+    <Grid Name="RootLayout" HorizontalAlignment="Left" VerticalAlignment="Top" Height="500" Width="800" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Column 1-->
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="3" x:Name="HeaderTextBox" FontFamily="Trebuchet MS" FontWeight="Bold" Foreground="White" Background="#FF34495E" FontSize="16" TextAlignment="Center" Padding="0,20">Ідентифікація та класифікація штампів і печаток</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" Name="DocumentHeader" TextAlignment="Center" Margin="0,10" FontFamily="Open Sans Semibold">Документ</TextBlock>
+        <Border Name="DocumentBorder" Grid.Row="2" Grid.RowSpan="11" Grid.Column="0" Background="#FFEBEBEB" BorderBrush="#a1a1a1" BorderThickness="1" Margin="20,0,20,22.5" MouseDown="DocumentBorder_OnMouseDown">
+            <Viewbox x:Name="PictureViewbox" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Image Name="Document"/>
+            </Viewbox>
+        </Border>
+        <!--End Column 1-->
+
+        <!-- Column 2 -->
+        <TextBlock Grid.Row="3" Grid.Column="1" Name="SignetHeader" TextAlignment="Center" FontFamily="Open Sans Semibold" Height="Auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,10">Знайдено печатку</TextBlock>
+        <Border Name="ResultBorder" Grid.Row="4" Grid.Column="1" Grid.RowSpan="4" Background="#FFEBEBEB" BorderBrush="#a1a1a1" BorderThickness="1" Height="160" Margin="0">
+            <Viewbox x:Name="ResultViewbox" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Image Name="Result"/>
+            </Viewbox>
+        </Border>
+
+        <TextBlock Grid.Row="8" Grid.Column="1" Name="StandardHeader" TextAlignment="Center" FontFamily="Open Sans Semibold" Height="Auto" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" RenderTransformOrigin="0.435,1.571">Еталон печатки</TextBlock>
+        <Border Name="StandardBorder"  Grid.Row="9" Grid.Column="1" Grid.RowSpan="3" Background="#FFEBEBEB" BorderBrush="#a1a1a1" BorderThickness="1" Height="160" Margin="0" VerticalAlignment="Bottom">
+            <Viewbox x:Name="StandardViewbox" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Image Name="Standard"/>
+            </Viewbox>
+        </Border>
+        <!-- End Column 2 -->
+
+		<!-- Column 3 -->
+		<Border Grid.Row="1" Grid.RowSpan="12" Grid.Column="2" Background="#FFEBEBEB" BorderBrush="#a1a1a1" Margin="20,0,0,0" />
+		<TextBlock Grid.Row="3" Grid.Column="2" Name="SignetAttributes" TextAlignment="Center" FontFamily="Open Sans Semibold" Height="Auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,10">Атрибути печатки</TextBlock>
+		<TextBlock Grid.Row="4" Grid.Column="2" Name="SignetType" TextAlignment="Center" FontFamily="Open Sans Semibold" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,0,0,0">Тип:</TextBlock>
+		
+		<Border Grid.Row="4" Grid.Column="2" Margin="68.088,0,5,0" Padding="5" BorderThickness="1" BorderBrush="#FFA1A1A1" Background="White" CornerRadius="20" Height="20" Width="175" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <TextBlock Margin="0,-6" FontSize="10.667" HorizontalAlignment="Left" Text="{Binding Path=SignetType, Mode=OneWay}"/>
+		</Border>
+
+		<TextBlock Grid.Row="5" Grid.Column="2" Name="Size" FontFamily="Open Sans Semibold" Height="Auto" VerticalAlignment="Top" Margin="30,0,0,0" HorizontalAlignment="Left">Розмір:</TextBlock>
+		
+		<Border Grid.Row="5" Grid.Column="2" Margin="68.088,0,5,0" Padding="5" BorderThickness="1" BorderBrush="#FFA1A1A1" Background="White" CornerRadius="20" Height="20" Width="175" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <TextBlock Margin="0,-6" FontSize="10.667" HorizontalAlignment="Left" Text="{Binding Path=SignetSize, Mode=OneWay}"/>
+		</Border>
+		
+		<TextBlock Grid.Row="6" Grid.Column="2" Name="ProtectionType" FontFamily="Open Sans Semibold" Height="Auto" VerticalAlignment="Top" Margin="30,0,0,0" HorizontalAlignment="Left">Тип захисту:</TextBlock>
+		
+		<Border Grid.Row="6" Grid.Column="2" Margin="68.088,0,5,0" Padding="5" BorderThickness="1" BorderBrush="#FFA1A1A1" Background="White" CornerRadius="20" Height="20" Width="175" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <TextBlock Margin="0,-6" FontSize="10.667" HorizontalAlignment="Left" Text="{Binding Path=ProtectionType, Mode=OneWay}"/>
+		</Border>
+		
+		<TextBlock Grid.Row="7" Grid.Column="2" Name="Similarity" FontFamily="Open Sans Semibold" Height="Auto" VerticalAlignment="Top" Margin="30,0,0,0" HorizontalAlignment="Left">Ступінь <LineBreak />схожості:</TextBlock>
+		
+	
+		
+		<TextBlock Grid.Row="8" Grid.Column="2" Name="DocumentProperties" TextAlignment="Center" FontFamily="Open Sans Semibold" Height="Auto" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10">Параметри документу</TextBlock>
+		
+		<Border Grid.Row="7" Grid.Column="2" Margin="68.088,0,5,0" Padding="5" BorderThickness="1" BorderBrush="#FFA1A1A1" Background="White" CornerRadius="20" Height="20" Width="175" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <TextBlock Margin="0,-6" FontSize="10.667" HorizontalAlignment="Left" Text="{Binding Path=SimilarityDegree, Mode=OneWay}"/>
+		</Border>
+		
+		<TextBlock Grid.Row="9" Grid.Column="2" Name="File" TextAlignment="Center" FontFamily="Open Sans Semibold" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,0,0,-0.001">Файл:</TextBlock>
+		
+		<Border Grid.Row="9" Grid.Column="2" Margin="68.088,0,5,0" Padding="5" BorderThickness="1" BorderBrush="#FFA1A1A1" Background="White" CornerRadius="20" Height="20" Width="175" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <TextBlock Name="FilenameTb" Margin="0,-6" FontSize="10.667" HorizontalAlignment="Left" Text="{Binding Path=Filename, Mode=OneWay}"/>
+		</Border>
+		
+		<TextBlock Grid.Row="10" Grid.Column="2" Name="StandardSize" TextAlignment="Center" FontFamily="Open Sans Semibold" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,0,0,0">Розмір:</TextBlock>
+		
+		<Border Grid.Row="10" Grid.Column="2" Margin="68.088,0,5,0" Padding="5" BorderThickness="1" BorderBrush="#FFA1A1A1" Background="White" CornerRadius="20" Height="20" Width="175" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <TextBlock Margin="0,-6" FontSize="10.667" HorizontalAlignment="Left" Text="{Binding Path=Filesize, Mode=OneWay}"/>
+		</Border>
+		
+		<TextBlock Grid.Row="11" Grid.Column="2" Name="ImageType" TextAlignment="Center" FontFamily="Open Sans Semibold" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,0,0,0">Тип:</TextBlock>
+		<Border Grid.Row="11" Grid.Column="2" Margin="68.088,0,5,0" Padding="5" BorderThickness="1" BorderBrush="#FFA1A1A1" Background="White" CornerRadius="20" Height="20" Width="175" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <TextBlock Margin="0,-6" FontSize="10.667" HorizontalAlignment="Left" Text="{Binding Path=Filetype, Mode=OneWay}"/>
+		</Border>
+		<!-- End Column 3 -->
+	</Grid>
+</Window>
